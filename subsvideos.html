@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+    <script src="js/myvideo.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/channel.js"></script>
+    <script src="js/translator.js"></script>
+    <script src="js/comm.js"></script>
+    <script src="js/languages.js"></script>
+    <script src="js/listvideos.js"></script>
+</head>
+
+<body  onload="init();">
+    <h1>SubsVideos</h1>
+    <button onclick="switchToAddNew();">Add new video</button><button onclick="switchToList();">List, search videos</button>
+    <div id="listVideos">
+        <h2>List and search videos</h2>
+        Channel:
+        <select id="channelSelList" type="select" class="menu"
+            title="Select channel.">
+        </select>
+        |
+        Subtitle language:
+        <select id="langSelList" type="select" class="menu"
+            title="Select subtitle language.">
+        </select>
+        |
+        Words to look for in title:
+        <input type="text" id="words" size="60">
+        |
+        Translator:
+        <select id="translatorSelList" type="select" class="menu"
+            title="Select translator.">
+        </select>
+        <br>
+        <hr>
+        <button onclick="listVideos();">Search</button>
+        <br>
+        <hr>
+        <div id="videoList">
+            here comes the list of videos
+        </div>
+    </div>
+    <div id="addNew">
+        <h2>Add new video</h2>
+        Link for new video: <input type="text" id="videoID" size="60" /> <button id="loadVideoButton" onclick="loadVideo(this.id);"
+        title="Loads the Youtube video of the given YT video ID or YT video web address.">Load</button>
+        <br>
+        <div id="videoDiv" style="display:none;">
+            <iframe id="videoFrame" class="yvideo"
+                            src="http://www.youtube.com/embed/kvKDUS7sYy8?rel=0&amp;controls=0&amp;hd=1&amp;showinfo=0&amp;enablejsapi=1"
+                            allowfullscreen="" style="height: 87%;width: 100%;/*! text-align: center; */"
+                            width="100%" height="100%" frameborder="0">
+            </iframe>
+        </div><br>
+        Title: <div id="videoTitle" class="inliner"></div><br>
+        Languages: <div id="languages" class="inliner"></div>
+        Titles:
+        <div id="langTitles"></div>
+        <br><br>
+        Channel:
+        <select id="channelSel" type="select" class="menu" onchange='operationChanged();'
+            title="Select channel.">
+        </select>
+        <button onclick="newChannel();">New channel</button>
+        <div style="display:none;" id="newChannel">
+            <h2>New Channel</h2><br>
+            <div class="fieldName">Channel name</div>: <input type="text" id="newChannelName" size="50"><br>
+            <div class="fieldName">Presenter</div>: <input type="text" id="newPresenter" size="50"><br>
+            <div class="fieldName">Link</div>: <input type="text" id="newLink" size="50"><br><br>
+            <button onclick="addNewChannel();">Add new channel</button>
+            <button onclick="cancelNewChannel();">Cancel</button>
+        </div>
+        <br>
+        <br>
+        Translator:
+        <select id="translatorSel" type="select" class="menu" onchange='operationChanged();'
+            title="Select translator.">
+        </select>
+        <button onclick="newtranslator();">New translator</button>
+        <div style="display:none;" id="newtranslator">
+            <h2>New translator</h2><br>
+            <div class="fieldName">Translator name</div>: <input type="text" id="newtranslatorName" size="50"><br>
+            <button onclick="addNewtranslator();">Add new translator</button>
+            <button onclick="cancelNewtranslator();">Cancel</button>
+        </div>
+        <br>
+        <hr>
+        <button id="addNewVideoButton" disabled onclick="addNewVideo();">Save video in DB</button>
+    </div>
+</body>
